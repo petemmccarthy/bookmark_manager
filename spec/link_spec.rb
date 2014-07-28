@@ -23,5 +23,7 @@ describe Link do
       # so now we have no links in the database
       expect(Link.count).to eq(0)
     end
+
   end
+
 end
