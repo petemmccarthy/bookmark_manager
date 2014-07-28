@@ -77,8 +77,6 @@ GEM
     highline (1.6.21)
     json (1.8.1)
     json_pure (1.8.1)
-    launchy (2.4.2)
-      addressable (~> 2.3)
     mime-types (2.3)
     mini_portile (0.6.0)
     multi_json (1.10.1)
@@ -102,8 +100,6 @@ GEM
     rspec-mocks (3.0.3)
       rspec-support (~> 3.0.0)
     rspec-support (3.0.3)
-    shotgun (0.9)
-      rack (>= 1.0)
     sinatra (1.4.5)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -128,7 +124,5 @@ DEPENDENCIES
   data_mapper
   database_cleaner
   dm-postgres-adapter
-  launchy
   rspec
-  shotgun
   sinatra
