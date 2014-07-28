@@ -1,15 +1,15 @@
 source 'https://rubygems.org'
 
-gem 'sinatra'
+ruby '2.1.2'
 
-gem 'shotgun'
+gem 'sinatra'
 gem 'capybara'
 gem 'cucumber'
 gem 'cucumber-sinatra'
-gem 'launchy'
 gem 'data_mapper'
 gem 'dm-postgres-adapter'
 
 group :development, :test do  
   gem 'rspec'
+  gem 'database_cleaner'
 end

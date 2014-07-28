@@ -15,6 +15,7 @@ DataMapper.auto_upgrade!
 
 
 class BookmarkManager < Sinatra::Base
+	
   get '/' do
     'Hello BookmarkManager!'
   end
