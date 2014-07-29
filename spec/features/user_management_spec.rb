@@ -8,10 +8,7 @@ feature "User signs up" do
   # you should test one thing at a time, whereas
   # by mixing the two we're testing both 
   # the business logic and the views.
-  #
-  # However, let's not worry about this yet 
-  # to keep the example simple.
-
+  # However, let's not worry about this yet to keep the example simple.
 
   scenario "when being logged out" do    
    expect{ sign_up }.to change(User, :count).by (1)
@@ -21,6 +18,8 @@ feature "User signs up" do
 
   scenario "with a password that doesn't match" do
     expect{ sign_up('a@a.com', 'pass', 'wrong') }.to change(User, :count).by (0)
+    expect(current_path).to eq('/users')
+    expect(page).to have_content("Sorry, your passwords don't match")
   end
 
   def sign_up(email = "peter@example.com", password = "123", password_confirmation = "123")
@@ -31,7 +30,5 @@ feature "User signs up" do
     fill_in :password_confirmation, :with => password_confirmation
     click_button "Sign up"
   end
-
-
 
 end

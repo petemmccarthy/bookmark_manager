@@ -3,6 +3,7 @@ require 'data_mapper'
 require './lib/link' # this needs to be done after datamapper is initialised
 require './lib/tag'
 require './lib/user'
+require 'rack-flash'
 require_relative 'helpers/application'
 require_relative 'data_mapper_setup'
 
@@ -12,7 +13,7 @@ class BookmarkManager < Sinatra::Base
   	
   enable :sessions
   set :session_secret, 'super secret'
-
+  use Rack::Flash
 
 	get '/' do
   	@links = Link.all
@@ -41,18 +42,32 @@ class BookmarkManager < Sinatra::Base
     # we need the quotes because otherwise
     # ruby would divide the symbol :users by the
     # variable new (which makes no sense)
+    @user = User.new
     erb :"users/new"
   end
 
   post '/users' do
-    user = User.create(:email => params[:email], 
+    @user = User.new(:email => params[:email], 
                       :password => params[:password],
                       :password_confirmation => params[:password_confirmation])
-    session[:user_id] = user.id
-    redirect to('/')
+    # the user.id will be nil if the user wasn't saved
+    # cos of password mismatch
+    if @user.save
+      session[:user_id] = @user.id
+      redirect to('/')
+      # if its not valid, show the same form again
+    else
+      flash.now[:notice] = "Sorry, your passwords don't match"
+      erb :"users/new"
+    end
   end
-
   # start the server if ruby file executed directly
   run! if app_file == $0
 
 end
+
+
+
+
+
+
