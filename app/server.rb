@@ -57,7 +57,7 @@ class BookmarkManager < Sinatra::Base
       redirect to('/')
       # if its not valid, show the same form again
     else
-      flash.now[:notice] = "Sorry, your passwords don't match"
+      flash.now[:errors] = @user.errors.full_messages
       erb :"users/new"
     end
   end
