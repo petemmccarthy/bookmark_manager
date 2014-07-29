@@ -22,14 +22,15 @@ feature "User adds a new link" do
     expect(link.tags.map(&:text)).to include("ruby")
   end
 
-   def add_link(url, title, tags = [])
+
+  def add_link(url, title, tags = [])
     within('#new-link') do
-      fill_in 'url', :with => url
-      fill_in 'title', :with => title
-      # our tags will be space separated
-      fill_in 'tags', :with => tags.join(' ')
-      click_button 'Add link'
-    end      
-  end
+    fill_in 'url', :with => url
+    fill_in 'title', :with => title
+    # our tags will be space separated
+    fill_in 'tags', :with => tags.join(' ')
+    click_button 'Add link'
+  end      
+end
 
 end
