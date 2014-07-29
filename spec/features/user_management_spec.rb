@@ -14,18 +14,24 @@ feature "User signs up" do
 
 
   scenario "when being logged out" do    
-   expect{ sign_up }.to change(User, :count).by 1
+   expect{ sign_up }.to change(User, :count).by (1)
    expect(page).to have_content("Welcome, peter@example.com")
    expect(User.first.email).to eq("peter@example.com")
   end
 
-  def sign_up(email = "peter@example.com", password = "123")
+  scenario "with a password that doesn't match" do
+    expect{ sign_up('a@a.com', 'pass', 'wrong') }.to change(User, :count).by (0)
+  end
+
+  def sign_up(email = "peter@example.com", password = "123", password_confirmation = "123")
     visit '/users/new'
-    expect(page.status_code).to eq(200)
     expect(page.status_code).to eq(200)
     fill_in :email, :with => email
     fill_in :password, :with => password
+    fill_in :password_confirmation, :with => password_confirmation
     click_button "Sign up"
   end
+
+
 
 end
