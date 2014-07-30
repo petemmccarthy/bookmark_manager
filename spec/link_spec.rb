@@ -5,7 +5,7 @@ describe Link do
   context "Demonstration of how datamapper works" do
 
     # This is not a real test, it's simply a demo of how it works
-    it 'should be created and then retrieved from the db' do
+    fit 'should be created and then retrieved from the db' do
       # In the beginning our database is empty, so there are no links
       expect(Link.count).to eq(0)
       # this creates it in the database, so it's stored on the disk

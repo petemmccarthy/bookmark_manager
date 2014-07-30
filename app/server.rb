@@ -7,6 +7,17 @@ require 'rack-flash'
 require_relative 'helpers/application'
 require_relative 'data_mapper_setup'
 
+# require_relative 'models/link'
+# require_relative 'models/tag'
+# require_relative 'models/user'
+
+
+# require_relative 'controllers/users'
+# require_relative 'controllers/sessions'
+# require_relative 'controllers/links'
+# require_relative 'controllers/tags'
+# require_relative 'controllers/application'
+
 class BookmarkManager < Sinatra::Base
 
   helpers Sinatra::ApplicationHelpers
@@ -14,6 +25,8 @@ class BookmarkManager < Sinatra::Base
   enable :sessions
   set :session_secret, 'super secret'
   use Rack::Flash
+  use Rack::MethodOverride
+
 
 	get '/' do
   	@links = Link.all
@@ -60,6 +73,12 @@ class BookmarkManager < Sinatra::Base
       flash[:errors] = ["The email or password are incorrect"]
       erb :"sessions/new"
     end
+  end
+
+  delete '/sessions' do
+    flash[:notice] = ["Good bye!"]
+    session[:user_id] = nil
+    redirect to('/')
   end
 
   post '/users' do

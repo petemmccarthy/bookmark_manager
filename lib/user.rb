@@ -3,7 +3,7 @@ require 'bcrypt'
 
 class User
 
-	attr_reader :password
+	attr_reader   :password
 	attr_accessor :password_confirmation
 
 	
