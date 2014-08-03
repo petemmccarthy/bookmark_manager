@@ -115,7 +115,7 @@ feature "User forgets password" do
     expect(page).to have_content("Forgot password?")
   end
 
-  scenario "user enters email that is not registered" do 
+  scenario "enters email that is not registered" do 
     visit '/users/reset'
     fill_in 'email', with: "wrongtest@test.com"
     click_on 'Reset Password'
@@ -124,7 +124,7 @@ feature "User forgets password" do
 
   scenario "user enters right email address" do 
     visit '/users/reset'
-    fill_in 'email', with: "petermccarthy49@gmail.co.uk"
+    fill_in 'email', with: "petermccarthy49@yahoo.co.uk"
     click_on 'Reset Password'
     expect(page).to have_content("Password reset link sent to your email address")  
   end
@@ -133,7 +133,7 @@ end
 
 feature "User resets password" do 
   before(:each) do 
-  User.create(:email => "petermccarthy49@gmail.co.uk",
+  User.create(:email => "petermccarthy49@yahoo.co.uk",
         :password => 'test',
         :password_confirmation => 'test',
         :password_token => "1token")  
