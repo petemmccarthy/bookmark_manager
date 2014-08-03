@@ -9,6 +9,7 @@ DataMapper.setup(:default, "postgres://localhost/bookmark_manager_#{env}")
 DataMapper.finalize
 
 # However, the database tables don't exist yet. Let's tell datamapper to create them
+# it does this using auto_upgrade
 DataMapper.auto_upgrade!
 
 # auto_upgrade makes non-destructive changes. It your tables don't exist, they will be created

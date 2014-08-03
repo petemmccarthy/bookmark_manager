@@ -6,12 +6,19 @@ class User
 	attr_reader   :password
 	attr_accessor :password_confirmation
 
-	
 
+  # incluide is similar to require
 	include DataMapper::Resource
+  # when we 'include' and call DataMapper as a class, 
+  # Resource is the module in that class
+  # include takes all the methods in the Resource module 
+  # and makes them class methods inside the User class
 
-	property :id, Serial
+  # we're using the 'property' method that include DataMapper::Resouce
+  # makes available to us
+	property :id, Serial # id is the name of the field and Serial is the type
 	property :email, String, :unique => true, :message => "This email is already taken"
+                            # these are the options - unique and message
 
 	# this will store both the password and the salt
   # It's Text and not String because String holds 
