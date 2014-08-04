@@ -25,6 +25,9 @@ class User
   # 50 characters by default
   # and it's not enough for the hash and salt
   property :password_digest, Text
+  property :password_token, String
+  property :password_token_timestamp, Text
+
 
   # this is datamapper's method of validating the model.
 	# The model will not be saved unless both password
